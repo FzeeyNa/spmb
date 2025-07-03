@@ -98,11 +98,15 @@ class Verifikator extends BaseController
         $idPendaftar = $this->registerModel->findAll();
         $ambilSekolah = $this->registerModel->ambilSekolah();
         //id otomatis
-        $dariDB = $this->registerModel->idOtomatis();
-        $nourut = (int) substr($dariDB, 6, 4);
-        $nourut++;
-        $huruf = "PPDB22";
-        $kdPendaftar = $huruf . sprintf("%04s", $nourut);
+       $dariDB = $this->registerModel->idOtomatis();
+if (!empty($dariDB)) {
+    $nourut = (int) substr($dariDB, 6, 4);
+} else {
+    $nourut = 0; // Atur nilai default jika belum ada data
+}
+$nourut++;
+$huruf = "PPDB22";
+$kdPendaftar = $huruf . sprintf("%04s", $nourut);
         session();
         $blmVerifFormulir = $this->formulirModel->blmVerif();
         $blmVerifDaftar = $this->daftarulang->blmVerif();

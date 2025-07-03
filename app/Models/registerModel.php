@@ -179,37 +179,68 @@ class registerModel extends Model
         return $query;
     }
     public function totalIPA()
-    {
-        $builder = $this->db->table('pendaftaran');
-        $builder->like('kdJurusan', 'IPA');
-        $builder->like('noFormulir', 'SMA%');
-        $query = $builder->countAllResults();
-        return $query;
-    }
-    public function bersamaIPA()
-    {
-        $builder = $this->db->table('pendaftaran');
-        $builder->like('kdJurusan', 'IPA');
-        $builder->like('noFormulir', 'PPDB-B-SMA%');
-        $query = $builder->countAllResults();
-        return $query;
-    }
-    public function totalIPS()
-    {
-        $builder = $this->db->table('pendaftaran');
-        $builder->like('kdJurusan', 'IPS');
-        $builder->like('noFormulir', 'SMA%');
-        $query = $builder->countAllResults();
-        return $query;
-    }
-    public function bersamaIPS()
-    {
-        $builder = $this->db->table('pendaftaran');
-        $builder->like('kdJurusan', 'IPS');
-        $builder->like('noFormulir', 'PPDB-B-SMA%');
-        $query = $builder->countAllResults();
-        return $query;
-    }
+{
+    $builder = $this->db->table('pendaftaran');
+    $builder->like('kdJurusan', 'IPA');
+    $builder->like('sekolah', 'SMA');
+    return $builder->countAllResults();
+}
+
+public function bersamaIPA()
+{
+    $builder = $this->db->table('pendaftaran');
+    $builder->like('kdJurusan', 'IPA');
+    $builder->like('noFormulir', 'PPDB-B-SMA%'); // atau filter yang sesuai untuk "PPDB Bersama"
+    return $builder->countAllResults();
+}
+
+public function totalIPS()
+{
+    $builder = $this->db->table('pendaftaran');
+    $builder->like('kdJurusan', 'IPS');
+    $builder->like('sekolah', 'SMA');
+    return $builder->countAllResults();
+}
+
+public function bersamaIPS()
+{
+    $builder = $this->db->table('pendaftaran');
+    $builder->like('kdJurusan', 'IPS');
+    $builder->like('noFormulir', 'PPDB-B-SMA%');
+    return $builder->countAllResults();
+}
+
+public function totalIPAEks()
+{
+    $builder = $this->db->table('pendaftaran');
+    $builder->like('kdJurusan', 'IPA EKSKUTIF');
+    $builder->like('sekolah', 'SMA');
+    return $builder->countAllResults();
+}
+
+public function bersamaIPAE()
+{
+    $builder = $this->db->table('pendaftaran');
+    $builder->like('kdJurusan', 'IPA EKSKUTIF');
+    $builder->like('noFormulir', 'PPDB-B-SMAE%');
+    return $builder->countAllResults();
+}
+
+public function totalIPSEks()
+{
+    $builder = $this->db->table('pendaftaran');
+    $builder->like('kdJurusan', 'IPS EKSKUTIF');
+    $builder->like('sekolah', 'SMA');
+    return $builder->countAllResults();
+}
+
+public function bersamaIPSE()
+{
+    $builder = $this->db->table('pendaftaran');
+    $builder->like('kdJurusan', 'IPS EKSKUTIF');
+    $builder->like('noFormulir', 'PPDB-B-SMAE%');
+    return $builder->countAllResults();
+}
     
      public function totalEks($kdJurusan, $prefix)
     {

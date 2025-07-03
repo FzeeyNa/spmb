@@ -33,10 +33,14 @@ class Register extends BaseController
         $ambilSekolah = $this->registerModel->ambilSekolah();
         //id otomatis
         $dariDB = $this->registerModel->idOtomatis();
-        $nourut = (int) substr($dariDB, 6, 4);
-        $nourut++;
-        $huruf = "PPDB22";
-        $kdPendaftar = $huruf . sprintf("%04s", $nourut);
+if (!empty($dariDB)) {
+    $nourut = (int) substr($dariDB, 6, 4);
+} else {
+    $nourut = 0; // Atau angka urut default jika database kosong
+}
+$nourut++;
+$huruf = "PPDB22";
+$kdPendaftar = $huruf . sprintf("%04s", $nourut);
         session();
         $data = [
             'title' => 'Form Registrasi',
